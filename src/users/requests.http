@@ -1,0 +1,54 @@
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+ "email": "tes5245542243434232t@est.com",
+"password":"asd2dfff33 "
+}
+
+### Sign in as an existing user
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+ "email": "tes54554243434232t@est.com",
+"password":"asddfff33 "
+}
+
+### Sign out
+
+POST http://localhost:3000/auth/signout
+
+###  GET 是"取"，不能改东西。 登出要改服务端状态（清 session），违反 GET 的语义。HTTP 协议、RFC 9110、浏览器安全模型都明确禁止。
+### 一句：因为 GET 一旦改东西，浏览器 prefetch、聊天链接预览、CDN 缓存、历史回放、CSRF 图片攻击全都会替你"调用"它——用户没有任何一个动作，你就把人家的登录态干掉了。 POST 不进 <img>、不被 prefetch、不会被聊天工具预览，这才有基本的安全下限。
+content
+### Get the currently signed user id
+
+GET http://localhost:3000/auth/whoami
+### Find a particular user with a given ID
+
+GET  http://localhost:3000/auth/4
+# Content-Type: application/json
+
+### Find all users with given email
+
+GET  http://localhost:3000/auth?email=test@est.com
+
+### Delete a user with given id
+
+DELETE http://localhost:3000/auth/13232
+
+### Update a user with given id
+PATCH http://localhost:3000/auth/2/
+Content-Type: application/json
+
+{
+    "email":"aaa@aaaaa.com"
+}
+
+### Set a color
+GET  http://localhost:3000/auth/colors/blue
+
+### Get color
+
+GET http://localhost:3000/auth/colors
